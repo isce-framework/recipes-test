@@ -1,0 +1,23 @@
+
+#Author: Ryan Burns
+
+package:
+    name: pyre
+    version: 1.0
+
+requirements:
+    build:
+        - git
+    host:
+        - python
+
+about:
+    home: http://pyre.orthologue.com
+    summary: an application framework for scientific applications
+
+source:
+    - git_url: https://github.com/aivazis/config
+      folder: config
+    - git_url: https://github.com/pyre/pyre
+      folder: pyre
+
