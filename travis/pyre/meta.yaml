@@ -7,7 +7,6 @@ package:
 requirements:
     build:
         - git
-    host:
         - python
     run:
         - python
