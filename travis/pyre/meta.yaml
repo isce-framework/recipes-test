@@ -1,4 +1,3 @@
-
 #Author: Ryan Burns
 
 package:
@@ -10,10 +9,13 @@ requirements:
         - git
     host:
         - python
+    run:
+        - python
 
 about:
     home: http://pyre.orthologue.com
     summary: an application framework for scientific applications
+    dev_url: https://github.com/pyre/pyre
 
 source:
     - git_url: https://github.com/aivazis/config
@@ -21,3 +23,7 @@ source:
     - git_url: https://github.com/pyre/pyre
       folder: pyre
 
+test:
+    imports:
+        - pyre
+        - journal
