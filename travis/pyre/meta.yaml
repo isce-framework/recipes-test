@@ -7,9 +7,9 @@ package:
 requirements:
     build:
         - git
-        - python
+        - python {{ python }}
     run:
-        - python
+        - python {{ python }}
 
 about:
     home: http://pyre.orthologue.com
