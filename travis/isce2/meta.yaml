@@ -1,0 +1,38 @@
+#Author: Ryan Burns
+
+package:
+    name: isce2
+    version: 2.2
+
+requirements:
+    build:
+        - git
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}
+        - scons
+    host:
+        - python
+        - gdal
+        - fftw
+    run:
+        - python
+        - gdal
+        - libgdal
+        - numpy
+        - scipy
+        - libgfortran
+        - libgcc
+        - fftw
+about:
+    home: http://winsar.unavco.org/software/isce.html
+    summary: insar scientific computing environment
+    dev_url: https://github.com/isce-framework/isce2
+
+source:
+    - git_url: https://github.com/isce-framework/isce2 
+      folder: isce2
+
+test:
+    imports:
+        - isce
