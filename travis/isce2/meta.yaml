@@ -11,10 +11,12 @@ requirements:
         - {{ compiler('cxx') }}
         - {{ compiler('fortran') }}
         - scons
+        - cython
     host:
         - python
         - gdal
         - fftw
+        - cython
     run:
         - python
         - gdal

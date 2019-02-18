@@ -2,10 +2,13 @@
 
 ##Author: Ryan Burns
 
-mkdir $SRC_DIR/{build,install,config}
+mkdir $SRC_DIR/{build,install,config,bin}
+
+##Setup a link to cython here
+ln -s $PREFIX/bin/cython $SRC_DIR/bin/cython3
 
 #Setting up some environment variables
-export PATH=$PATH:$PREFIX/bin
+export PATH=$PATH:$PREFIX/bin:$SRC_DIR/bin
 export LD_LIBRARY_PATH=$LD_LIBRARYPATH:$PREFIX/lib
 
 #Set up SConfigISCE file
@@ -38,3 +41,16 @@ unset SCONS_CONFIG_DIR
 ##Move installation to site-packages
 mv $SRC_DIR/install/isce $SP_DIR
 rm -rf $SRC_DIR/build
+
+##Setup activate and deactivate scripts
+ACTIVATE_DIR=$PREFIX/etc/conda/activate.d
+DEACTIVATE_DIR=$PREFIX/etc/conda/deactivate.d
+mkdir -p $ACTIVATE_DIR
+echo "export ISCE_HOME_BACKUP=$ISCE_HOME" > "$ACTIVATE_DIR/isce_home.sh"
+echo "export ISCE_HOME=$SP_DIR/isce" >> "$ACTIVATE_DIR/isce_home.sh"
+echo "export ISCE_PATH_BACKUP=$PATH" >> "$ACTIVATE_DIR/isce_home.sh"
+echo "export PATH=$PATH:$SP_DIR/isce/bin:$SP_DIR/isce/applications" >> "$ACTIVATE_DIR/isce_home.sh"
+
+mkdir -p $DEACTIVATE_DIR
+echo "export ISCE_HOME=$ISCE_HOME_BACKUP" > "$DEACTIVATE_DIR/isce_home.sh"
+echo "export PATH=$ISCE_PATH_BACKUP" >> "$DEACTIVATE_DIR/isce_home.sh"
