@@ -7,9 +7,11 @@ package:
 requirements:
     build:
         - git
-        - python {{ python }}
+        - {{ compiler('cxx') }}
+    host:
+        - python
     run:
-        - python {{ python }}
+        - python
 
 about:
     home: http://pyre.orthologue.com
