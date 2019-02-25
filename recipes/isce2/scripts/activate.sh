@@ -9,7 +9,7 @@ if [[ -n "$ISCE_STACK" ]]; then
 fi
 
 
-export ISCE_HOME=`$CONDA_PREFIX/bin/python -c "import isce, os; print(os.path.basename(isce.__file__))"`
+export ISCE_HOME=`$CONDA_PREFIX/bin/python -c "import isce, os; print(os.path.dirname(isce.__file__))" | tail -n 1`
 
 
 if [ -d $CONDA_PREFIX/share/isce2 ]; then
