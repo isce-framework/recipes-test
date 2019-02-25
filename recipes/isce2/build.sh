@@ -40,3 +40,16 @@ unset SCONS_CONFIG_DIR
 mv $SRC_DIR/install/isce $SP_DIR
 rm -rf $SRC_DIR/build
 
+#Move stack processors to share
+mkdir -p $PREFIX/share/isce2
+mv $SRC_DIR/isce2/contrib/stack/* $PREFIX/share/isce2
+
+###Activate/ deactivate scripts
+ACTIVATE_DIR=$PREFIX/etc/conda/activate.d
+DEACTIVATE_DIR=$PREFIX/etc/conda/deactivate.d
+mkdir -p $ACTIVATE_DIR
+mkdir -p $DEACTIVATE_DIR
+
+cp $RECIPE_DIR/scripts/activate.sh $ACTIVATE_DIR/isce2-activate.sh
+cp $RECIPE_DIR/scripts/deactivate.sh $DEACTIVATE_DIR/isce2-deactivate.sh
+

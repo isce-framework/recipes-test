@@ -1,10 +1,11 @@
+{% set version = "2.3.1" %}
+
 package:
     name: isce2
-    version: 2.2
+    version: {{ version }}
 
 requirements:
     build:
-        - git
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ compiler('fortran') }}
@@ -30,8 +31,9 @@ about:
     dev_url: https://github.com/isce-framework/isce2
 
 source:
-    - git_url: https://github.com/isce-framework/isce2 
+      url: https://github.com/isce-framework/isce2/archive/v{{ version }}.tar.gz
       folder: isce2
+      sha256: 0ff07d8d86bab899b0855baabdb949eb7b0d5df8eef70a0a4c530c75ca033ad0
 
 test:
     imports:
