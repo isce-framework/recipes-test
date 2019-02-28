@@ -2,6 +2,9 @@
 
 ##Author: Ryan Burns
 
+# Override anaconda include flags
+unset CXXFLAGS
+
 mkdir $SRC_DIR/{build,install}
 
 ##Workaround for PROJ_LIB clobbering by mm internally
@@ -14,7 +17,6 @@ export BLD_CONFIG=$SRC_DIR/config
 export EXPORT_ROOT=$SRC_DIR/install
 export PATH=$PATH:$EXPORT_ROOT/bin
 export PYTHONPATH=$PYTHONPATH:$EXPORT_ROOT/packages
-export LD_LIBRARY_PATH=$LD_LIBRARYPATH:$EXPORT_ROOT/lib
 export MM_INCLUDES=$EXPORT_ROOT/include
 export MM_LIBPATH=$EXPORT_ROOT/lib
 
@@ -23,12 +25,13 @@ touch $PREFIX/include/portinfo
 cd $SRC_DIR/pyre
 
 
+# Override anaconda $PYTHON (executable name) variable
+export PYTHON=`$RECIPE_CONDA_PYTHON -c "import sysconfig; print(sysconfig.get_config_var('CONFINCLUDEPY').split('/')[-1])"`
 cat <<EOF >> .mm/config.def
-PYTHON=`$RECIPE_CONDA_PYTHON -c "import sysconfig; print(sysconfig.get_config_var('CONFINCLUDEPY').split('/')[-1])"`
 PYTHON_DIR=$PREFIX
 PYTHON_INCDIR=`$RECIPE_CONDA_PYTHON -c "from sysconfig import get_paths; print(get_paths()['include'])"`
 PYTHON_LIB=$PYTHON
-PYTHON_LIBDIR=`$RECIPE_CONDA_PYTHON -c "from sysconfig import get_config_var; print(get_config_var('LIBDEST'))"`
+PYTHON_LIBDIR=$PREFIX/lib
 PYTHON_PYCFLAGS=-b
 EOF
 
