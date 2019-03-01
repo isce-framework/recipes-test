@@ -22,8 +22,6 @@ requirements:
         - libgdal
         - numpy
         - scipy
-        - libgfortran
-        - libgcc
         - fftw
 about:
     home: http://winsar.unavco.org/software/isce.html

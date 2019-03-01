@@ -43,6 +43,7 @@ rm -rf $SRC_DIR/build
 #Move stack processors to share
 mkdir -p $PREFIX/share/isce2
 mv $SRC_DIR/isce2/contrib/stack/* $PREFIX/share/isce2
+mv $SRC_DIR/isce2/contrib/timeseries/* $PREFIX/share/isce2
 
 ###Activate/ deactivate scripts
 ACTIVATE_DIR=$PREFIX/etc/conda/activate.d
